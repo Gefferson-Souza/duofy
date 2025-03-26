@@ -46,7 +46,7 @@ O sistema é construído com uma arquitetura modular seguindo os princípios do 
 
 1. Clone o repositório:
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/Gefferson-Souza/duofy.git
 cd projeto-duofy
 ```
 
