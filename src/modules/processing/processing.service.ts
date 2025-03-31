@@ -3,7 +3,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { LessThan, Repository } from 'typeorm';
 import { Order, OrderStatus } from '../orders/entities/order.entity';
-import { LogsService } from '../logs/logs.service';
+// import { LogsService } from '../logs/logs.service';
 
 @Injectable()
 export class ProcessingService {
@@ -12,7 +12,7 @@ export class ProcessingService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
-    private readonly logsService: LogsService,
+    // private readonly logsService: LogsService,
   ) {}
 
   async processOrder(orderId: string): Promise<void> {
@@ -34,12 +34,12 @@ export class ProcessingService {
       await this.orderRepository.save(order);
 
       // Registrar log de processamento iniciado
-      await this.logsService.createLog({
-        orderId,
-        action: 'PROCESSING_STARTED',
-        data: { timestamp: new Date() },
-        status: 'success',
-      });
+      // await this.logsService.createLog({
+      //   orderId,
+      //   action: 'PROCESSING_STARTED',
+      //   data: { timestamp: new Date() },
+      //   status: 'success',
+      // });
 
       // Simular um processamento assíncrono (em produção, isso seria uma tarefa mais complexa)
       await this.simulateProcessing();
@@ -52,13 +52,13 @@ export class ProcessingService {
       const processingTime = Date.now() - startTime;
 
       // Registrar log de processamento concluído
-      await this.logsService.createLog({
-        orderId,
-        action: 'PROCESSING_COMPLETED',
-        data: { timestamp: new Date() },
-        status: 'success',
-        processingTime,
-      });
+      // await this.logsService.createLog({
+      //   orderId,
+      //   action: 'PROCESSING_COMPLETED',
+      //   data: { timestamp: new Date() },
+      //   status: 'success',
+      //   processingTime,
+      // });
 
       this.logger.log(
         `Processamento do pedido ${orderId} concluído em ${processingTime}ms`,
@@ -68,13 +68,13 @@ export class ProcessingService {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
 
-      await this.logsService.createLog({
-        orderId,
-        action: 'PROCESSING_ERROR',
-        data: { error: errorMessage },
-        status: 'error',
-        errorMessage,
-      });
+      // await this.logsService.createLog({
+      //   orderId,
+      //   action: 'PROCESSING_ERROR',
+      //   data: { error: errorMessage },
+      //   status: 'error',
+      //   errorMessage,
+      // });
 
       this.logger.error(`Erro ao processar pedido ${orderId}: ${errorMessage}`);
       throw error;

@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
 import { Order } from './entities/order.entity';
-import { LogsModule } from '../logs/logs.module';
+// import { LogsModule } from '../logs/logs.module';
 
 @Module({
   imports: [
@@ -32,7 +32,7 @@ import { LogsModule } from '../logs/logs.module';
         }),
       },
     ]),
-    LogsModule,
+    // LogsModule,
   ],
   controllers: [OrdersController],
   providers: [OrdersService],

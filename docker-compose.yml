@@ -14,12 +14,12 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
-      - POSTGRES_HOST=localhost
+      - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
       - POSTGRES_DB=duofy
-      - MONGODB_URI=mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.10"
+      - MONGODB_URI=mongodb://mongo:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.10"
       - RABBITMQ_URL=amqp://rabbitmq:5672
       - JWT_SECRET=sua_chave_secreta_super_segura_para_jwt
       - JWT_EXPIRES_IN=1d
@@ -36,7 +36,7 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=123456
       - POSTGRES_DB=duofy
     volumes:
       - postgres_data:/var/lib/postgresql/data

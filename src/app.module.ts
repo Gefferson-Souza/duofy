@@ -8,7 +8,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { ProcessingModule } from './modules/processing/processing.module';
-import { LogsModule } from './modules/logs/logs.module';
+// import { LogsModule } from './modules/logs/logs.module';
 import { ReportsModule } from './modules/reports/reports.module';
 
 @Module({
@@ -24,11 +24,11 @@ import { ReportsModule } from './modules/reports/reports.module';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        host: configService.get('POSTGRES_HOST', 'localhost'),
-        port: configService.get('POSTGRES_PORT', 5432),
-        username: configService.get('POSTGRES_USER', 'postgres'),
-        password: configService.get('POSTGRES_PASSWORD', '123456'),
-        database: configService.get('POSTGRES_DB', 'duofy'),
+        host: configService.get('POSTGRES_HOST'),
+        port: configService.get('POSTGRES_PORT'),
+        username: configService.get('POSTGRES_USER'),
+        password: configService.get('POSTGRES_PASSWORD'),
+        database: configService.get('POSTGRES_DB'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize:
           configService.get('NODE_ENV', 'development') !== 'production',
@@ -61,7 +61,7 @@ import { ReportsModule } from './modules/reports/reports.module';
     AuthModule,
     OrdersModule,
     ProcessingModule,
-    LogsModule,
+    // LogsModule,
     ReportsModule,
   ],
   controllers: [AppController],

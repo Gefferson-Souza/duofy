@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { Order, OrderStatus } from '../orders/entities/order.entity';
-import { LogsService } from '../logs/logs.service';
+// import { LogsService } from '../logs/logs.service';
 import { DailyReportDto, DateRangeReportDto } from './reports.dto';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class ReportsService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
-    private readonly logsService: LogsService,
+    // private readonly logsService: LogsService,
   ) {}
 
   async generateDailyReport(date?: Date): Promise<DailyReportDto> {
@@ -54,12 +54,12 @@ export class ReportsService {
     };
 
     // Registrar log de geração de relatório
-    await this.logsService.createLog({
-      orderId: 'system',
-      action: 'REPORT_GENERATED',
-      data: { report },
-      status: 'success',
-    });
+    // await this.logsService.createLog({
+    //   orderId: 'system',
+    //   action: 'REPORT_GENERATED',
+    //   data: { report },
+    //   status: 'success',
+    // });
 
     return report;
   }
@@ -109,12 +109,12 @@ export class ReportsService {
     };
 
     // Registrar log de geração de relatório
-    await this.logsService.createLog({
-      orderId: 'system',
-      action: 'REPORT_GENERATED',
-      data: { report },
-      status: 'success',
-    });
+    // await this.logsService.createLog({
+    //   orderId: 'system',
+    //   action: 'REPORT_GENERATED',
+    //   data: { report },
+    //   status: 'success',
+    // });
 
     return report;
   }

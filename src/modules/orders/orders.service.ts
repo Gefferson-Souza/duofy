@@ -4,7 +4,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { Repository } from 'typeorm';
 import { Order, OrderStatus } from './entities/order.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { LogsService } from '../logs/logs.service';
+// import { LogsService } from '../logs/logs.service';
 
 @Injectable()
 export class OrdersService {
@@ -13,7 +13,7 @@ export class OrdersService {
     private readonly orderRepository: Repository<Order>,
     @Inject('ORDERS_SERVICE')
     private readonly orderClient: ClientProxy,
-    private readonly logsService: LogsService,
+    // private readonly logsService: LogsService,
   ) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
@@ -33,12 +33,12 @@ export class OrdersService {
     const savedOrder = await this.orderRepository.save(order);
 
     // Registrar log de criação
-    await this.logsService.createLog({
-      orderId: savedOrder.id,
-      action: 'CREATE',
-      data: savedOrder,
-      status: 'success',
-    });
+    // await this.logsService.createLog({
+    //   orderId: savedOrder.id,
+    //   action: 'CREATE',
+    //   data: savedOrder,
+    //   status: 'success',
+    // });
 
     // Publicar evento para processamento assíncrono
     this.orderClient.emit('order_created', {

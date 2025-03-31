@@ -4,7 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProcessingService } from './processing.service';
 import { ProcessingController } from './processing.controller';
-import { LogsModule } from '../logs/logs.module';
+// import { LogsModule } from '../logs/logs.module';
 import { OrdersModule } from '../orders/orders.module';
 import { Order } from '../orders/entities/order.entity';
 
@@ -33,7 +33,7 @@ import { Order } from '../orders/entities/order.entity';
         }),
       },
     ]),
-    LogsModule,
+    // LogsModule,
     OrdersModule,
   ],
   controllers: [ProcessingController],
